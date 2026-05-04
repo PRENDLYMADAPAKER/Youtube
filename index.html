@@ -1,0 +1,440 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NZM TUBE</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+    }body {
+  background: #0f0f0f;
+  color: #fff;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0 20px;
+  background: #0f0f0f;
+  border-bottom: 1px solid #272727;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  white-space: nowrap;
+}
+
+.logo {
+  width: 38px;
+  height: 26px;
+  border-radius: 8px;
+  background: #ff0033;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.search-wrap {
+  flex: 1;
+  max-width: 640px;
+  display: flex;
+  border: 1px solid #303030;
+  border-radius: 999px;
+  overflow: hidden;
+  background: #121212;
+}
+
+.search-wrap input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background: transparent;
+  color: #fff;
+  font-size: 15px;
+}
+
+.search-wrap button {
+  width: 72px;
+  border: none;
+  border-left: 1px solid #303030;
+  background: #222;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.profile {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff0033, #7c3aed);
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: calc(100vh - 64px);
+}
+
+aside {
+  border-right: 1px solid #272727;
+  padding: 18px 12px;
+  background: #0f0f0f;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  color: #eee;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #272727;
+}
+
+main {
+  padding: 22px;
+}
+
+.chips {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 18px;
+}
+
+.chip {
+  border: none;
+  border-radius: 999px;
+  padding: 9px 14px;
+  background: #272727;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.chip.active {
+  background: #fff;
+  color: #111;
+}
+
+.hero {
+  margin-bottom: 24px;
+  padding: 28px;
+  border-radius: 24px;
+  background: radial-gradient(circle at top left, #ff0033, transparent 35%), linear-gradient(135deg, #1f1f1f, #121212);
+  border: 1px solid #303030;
+}
+
+.hero h1 {
+  font-size: clamp(28px, 4vw, 48px);
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #cfcfcf;
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 24px 18px;
+}
+
+.video-card {
+  cursor: pointer;
+}
+
+.thumbnail {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #222;
+  margin-bottom: 10px;
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.25s ease;
+}
+
+.video-card:hover img {
+  transform: scale(1.05);
+}
+
+.duration {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  padding: 4px 6px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 12px;
+}
+
+.video-info {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 10px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #333;
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.video-title {
+  font-size: 15px;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+.meta {
+  color: #aaa;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.empty {
+  display: none;
+  color: #aaa;
+  padding: 32px 0;
+  text-align: center;
+}
+
+@media (max-width: 820px) {
+  header {
+    height: auto;
+    flex-wrap: wrap;
+    padding: 14px;
+  }
+
+  .search-wrap {
+    order: 3;
+    min-width: 100%;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    display: none;
+  }
+
+  main {
+    padding: 16px;
+  }
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">▶</div>
+      <span>NZM TUBE</span>
+    </div><form class="search-wrap" id="searchForm">
+  <input id="searchInput" type="search" placeholder="Search NZM TUBE" autocomplete="off" />
+  <button type="submit" aria-label="Search">⌕</button>
+</form>
+
+<div class="profile">N</div>
+
+  </header>  <div class="layout">
+    <aside>
+      <div class="nav-item active">🏠 Home</div>
+      <div class="nav-item">🔥 Trending</div>
+      <div class="nav-item">🎵 Music</div>
+      <div class="nav-item">🎮 Gaming</div>
+      <div class="nav-item">🎬 Movies</div>
+      <div class="nav-item">📚 Learning</div>
+      <div class="nav-item">❤️ Favorites</div>
+    </aside><main>
+  <section class="chips">
+    <button class="chip active" data-filter="all">All</button>
+    <button class="chip" data-filter="music">Music</button>
+    <button class="chip" data-filter="gaming">Gaming</button>
+    <button class="chip" data-filter="tech">Tech</button>
+    <button class="chip" data-filter="vlog">Vlogs</button>
+    <button class="chip" data-filter="learning">Learning</button>
+  </section>
+
+  <section class="hero">
+    <h1>Watch what you love.</h1>
+    <p>Welcome to NZM TUBE — a YouTube-style homepage template with search, categories, responsive cards, and a clean dark video layout.</p>
+  </section>
+
+  <section class="video-grid" id="videoGrid"></section>
+  <p class="empty" id="emptyState">No videos found. Try another search.</p>
+</main>
+
+  </div>  <script>
+    // Put your YouTube Data API v3 key here.
+    // For personal/local use, restrict it in Google Cloud Console to YouTube Data API v3.
+    const API_KEY = "AIzaSyBVcJ_KWBBTACy-FeeLAj8sE8ltNGTd8aQ";
+
+    const videoGrid = document.getElementById("videoGrid");
+    const emptyState = document.getElementById("emptyState");
+    const searchForm = document.getElementById("searchForm");
+    const searchInput = document.getElementById("searchInput");
+    const chips = document.querySelectorAll(".chip");
+
+    let currentFilter = "all";
+    let currentSearch = "nzmtube trending";
+
+    function escapeHTML(text = "") {
+      return text
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function getSearchQuery() {
+      if (currentSearch) return currentSearch;
+      if (currentFilter === "all") return "trending videos";
+      return currentFilter;
+    }
+
+    function showLoading() {
+      videoGrid.innerHTML = `
+        <p class="meta" style="grid-column: 1 / -1; text-align:center; padding: 30px;">
+          Loading videos...
+        </p>
+      `;
+      emptyState.style.display = "none";
+    }
+
+    function showError(message) {
+      videoGrid.innerHTML = "";
+      emptyState.textContent = message;
+      emptyState.style.display = "block";
+    }
+
+    async function searchYouTube() {
+      const query = getSearchQuery();
+
+      if (!API_KEY || API_KEY === "YOUR_YOUTUBE_API_KEY_HERE") {
+        showError("Add your YouTube API key inside the script first.");
+        return;
+      }
+
+      showLoading();
+
+      try {
+        const url = new URL("https://www.googleapis.com/youtube/v3/search");
+        url.searchParams.set("part", "snippet");
+        url.searchParams.set("type", "video");
+        url.searchParams.set("maxResults", "12");
+        url.searchParams.set("q", query);
+        url.searchParams.set("key", API_KEY);
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error?.message || "YouTube API request failed.");
+        }
+
+        renderVideos(data.items || []);
+      } catch (error) {
+        showError(error.message || "Something went wrong while loading videos.");
+      }
+    }
+
+    function renderVideos(videos) {
+      if (!videos.length) {
+        videoGrid.innerHTML = "";
+        emptyState.textContent = "No videos found. Try another search.";
+        emptyState.style.display = "block";
+        return;
+      }
+
+      emptyState.style.display = "none";
+
+      videoGrid.innerHTML = videos.map(video => {
+        const videoId = video.id.videoId;
+        const title = escapeHTML(video.snippet.title);
+        const channel = escapeHTML(video.snippet.channelTitle);
+        const thumb = video.snippet.thumbnails.high?.url || video.snippet.thumbnails.medium?.url || video.snippet.thumbnails.default?.url;
+        const date = new Date(video.snippet.publishedAt).toLocaleDateString();
+        const avatar = channel.slice(0, 2).toUpperCase();
+
+        return `
+          <article class="video-card" onclick="window.open('https://www.youtube.com/watch?v=${videoId}', '_blank')">
+            <div class="thumbnail">
+              <img src="${thumb}" alt="${title}" />
+              <span class="duration">YouTube</span>
+            </div>
+            <div class="video-info">
+              <div class="avatar">${avatar}</div>
+              <div>
+                <h3 class="video-title">${title}</h3>
+                <p class="meta">${channel}</p>
+                <p class="meta">Published ${date}</p>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        chips.forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        currentFilter = chip.dataset.filter;
+        currentSearch = currentFilter === "all" ? "trending videos" : currentFilter;
+        searchInput.value = "";
+        searchYouTube();
+      });
+    });
+
+    searchForm.addEventListener("submit", event => {
+      event.preventDefault();
+      currentSearch = searchInput.value.trim() || "trending videos";
+      searchYouTube();
+    });
+
+    searchYouTube();
+  </script></body>
+  </html>
