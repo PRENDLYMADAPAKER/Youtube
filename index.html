@@ -436,6 +436,8 @@ main {
         const url = new URL("https://www.googleapis.com/youtube/v3/search");
         url.searchParams.set("part", "snippet");
         url.searchParams.set("type", "video");
+        // Only return videos that are allowed to play inside embedded players.
+        url.searchParams.set("videoEmbeddable", "true");
         url.searchParams.set("maxResults", "12");
         url.searchParams.set("q", query);
         url.searchParams.set("key", API_KEY);
